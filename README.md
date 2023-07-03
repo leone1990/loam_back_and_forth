@@ -1,5 +1,11 @@
 # loam_back_and_forth
 
+loam_back_and_forth modified to work under Ubuntu20.04 and ROS noetic
+
+benchmark:nsh_staircase.bag and  nsh_undulating_motion.bag
+
+链接: https://pan.baidu.com/s/1n0xy1gOGP62sMaFeHfWYTg?pwd=m2kd 提取码: m2kd 
+
 This is a LOAM (Lidar Odometry and Mapping) ROS package for back and forth tilting 2D laser scanner. This package is a simple modified copy of the original one release by [Ji Zhang](http://www.frc.ri.cmu.edu/~jizhang03/). The only change on top of the original one is to make it a Catkin package and work under ROS Indigo. Please cite their paper if this package is used. 
 
 Wiki Webpage by the Author: [http://wiki.ros.org/loam_back_and_forth](http://wiki.ros.org/loam_back_and_forth)

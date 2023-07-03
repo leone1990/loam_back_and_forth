@@ -23,9 +23,6 @@
 #include <pcl/filters/voxel_grid.h>
 #include <pcl/kdtree/kdtree_flann.h>
 
-//#include "tic_toc.h"
-//#include "voxel_grid_omp.h"
-
 #include "voxel_filter.hpp"
 
 
@@ -205,7 +202,6 @@ void laserCloudLastHandler(const sensor_msgs::PointCloud2ConstPtr& laserCloudLas
   laserCloudLast->clear();
   pcl::fromROSMsg(*laserCloudLast2, *laserCloudLast);
 
-      //std::cout<<"v222:"<<laserCloudLast->points[i].v<<std::endl;
   newLaserCloudLast = true;
 }
 
@@ -368,7 +364,6 @@ int main(int argc, char** argv)
       laserCloudCornerFromMap->clear();
       laserCloudSurfFromMap->clear();
       for (int i = 0; i < laserCloudFromMapNum; i++) {
-        //std::cout<<"v33:"<<laserCloudFromMap->points[i].v<<std::endl;
         if (fabs(laserCloudFromMap->points[i].v - 2) < 0.005 || 
             fabs(laserCloudFromMap->points[i].v - 1) < 0.005) {
           laserCloudCornerFromMap->push_back(laserCloudFromMap->points[i]);
@@ -381,11 +376,9 @@ int main(int argc, char** argv)
       laserCloudSurf->clear();
      
       int laserCloudLastNum = laserCloudLast->points.size();
-      //std::cout<<"laserCloudLastNum:"<<laserCloudLastNum<<std::endl;
       for (int i = 0; i < laserCloudLastNum; i++) {
         if (fabs(laserCloudLast->points[i].v - 2) < 0.005 || 
             fabs(laserCloudLast->points[i].v - 1) < 0.005) {
-        //std::cout<<"v222:"<<laserCloudLast->points[i].v<<std::endl;
           laserCloudCorner->push_back(laserCloudLast->points[i]);
         } else {
           laserCloudSurf->push_back(laserCloudLast->points[i]);
@@ -421,27 +414,6 @@ int main(int argc, char** argv)
       laserCloudLast->clear();
       *laserCloudLast = *laserCloudCorner2 + *laserCloudSurf2;
       laserCloudLastNum = laserCloudLast->points.size();
-
-      /*for(int i=0;i<laserCloudCorner->size();i++)
-      {
-        if(laserCloudCorner->points[i].v !=0) 
-          std::cout<<"laserCloudLast111-.v:"<<laserCloudCorner->points[i].v<<std::endl;
-      } */  
-      /*for(int i=0;i<laserCloudCorner2->size();i++)
-      {
-        if(laserCloudCorner2->points[i].v !=0) 
-          std::cout<<"laserCloudLast222-.v:"<<laserCloudCorner2->points[i].v<<std::endl;
-      }*/   
-      /*for(int i=0;i<laserCloudSurf->size();i++)
-      {
-        if(laserCloudSurf->points[i].v !=0) 
-          std::cout<<"laserCloudLast333-.v:"<<laserCloudSurf->points[i].v<<std::endl;
-      } */  
-      /*for(int i=0;i<laserCloudSurf2->size();i++)
-      {
-        if(laserCloudSurf2->points[i].v !=0) 
-          std::cout<<"laserCloudLast444-.v:"<<laserCloudSurf2->points[i].v<<std::endl;
-      } */  
 
       if (laserCloudSurfFromMap->points.size() > 500 && laserCloudCornerFromMap->points.size()>0) {
 
